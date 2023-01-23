@@ -73,7 +73,7 @@ const connectionOptions = {
   printQRInTerminal: true,
   auth: state,
   //logger: pino({ level: 'trace' })
-  browser: ['ANDY MD','Edge','1.0.0'] //Nombre de la sesión 
+  browser: ['GataBot-MD','Edge','1.0.0'] //Nombre de la sesión 
 }
 
 global.conn = makeWASocket(connectionOptions)
@@ -156,9 +156,9 @@ conn.handler = handler.handler.bind(global.conn)
 conn.participantsUpdate = handler.participantsUpdate.bind(global.conn)
 conn.groupsUpdate = handler.groupsUpdate.bind(global.conn)
 conn.onDelete = handler.deleteUpdate.bind(global.conn)
-conn.connectionUpdate = connectionUpdate.bind(global.conn)
-conn.credsUpdate = saveState.bind(global.conn, true)
 conn.onCall = handler.callUpdate.bind(global.conn)
+conn.connectionUpdate = connectionUpdate.bind(global.conn)
+conn.credsUpdate = saveCreds.bind(global.conn, true)
 
 conn.ev.on('messages.upsert', conn.handler)
 conn.ev.on('group-participants.update', conn.participantsUpdate)
